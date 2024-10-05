@@ -4,7 +4,7 @@ import 'package:flutter_reference_step_up_auth/src/ui/prompt.dart';
 // These functions are just for having constant default values for the
 // callback parameters.
 void _constVoid() {}
-void _constStrToVoid(String) {}
+void _constStrToVoid(String _) {}
 
 class StepUpPrompt extends StatefulWidget {
   /// Value that was returned from the backend server in the error that informed
@@ -27,6 +27,7 @@ class StepUpPrompt extends StatefulWidget {
   final void Function() onFailure;
 
   const StepUpPrompt({
+    super.key,
     required this.sessionId,
     this.onSuccess = _constStrToVoid,
     this.onFailure = _constVoid,
@@ -39,7 +40,7 @@ class StepUpPrompt extends StatefulWidget {
 }
 
 class _StepUpPromptState extends State<StepUpPrompt> {
-  String? inputCode = null;
+  String? inputCode;
 
   @override
   Widget build(BuildContext context) {

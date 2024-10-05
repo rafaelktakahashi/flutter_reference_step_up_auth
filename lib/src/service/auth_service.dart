@@ -29,7 +29,7 @@ void initializeAuthService({
 /// returned.
 Future<String?> verifyCode(String code, String sessionId) async {
   if (_authServiceState is AuthServiceStateInitialized) {
-    throw StepUpAuthError(
+    throw const StepUpAuthError(
       errorCode: "001",
       devMessage: "SDK is not yet initialized.",
     );
