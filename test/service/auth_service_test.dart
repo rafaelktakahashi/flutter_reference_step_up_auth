@@ -34,8 +34,12 @@ void main() {
       expect(resultingToken, equals("諸行無常 諸行是苦 諸法無我"));
     });
     test("Verify incorrect code", () async {
-      final resultingToken = await verifyCode("43", "sessionId");
-      expect(resultingToken, equals(null));
+      try {
+        final _ = await verifyCode("44", "sessionId");
+        fail("verifyCode should not have returned a value.");
+      } catch (e) {
+        expect(e, isA<StepUpAuthError>());
+      }
     });
   });
 }

@@ -2,7 +2,7 @@ library flutter_reference_step_up_auth;
 
 import 'package:flutter_reference_step_up_auth/src/service/auth_service.dart';
 export 'package:flutter_reference_step_up_auth/src/ui/step_up_prompt.dart'
-    show StepUpPrompt;
+    show StepUpPrompt, StepUpPromptFailureReason;
 
 /// Initialize the Step Up Auth SDK.
 ///

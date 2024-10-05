@@ -25,9 +25,15 @@ void initializeAuthService({
 }
 
 /// Verifies if the code input by the user is correct.
-/// If it's correct, the authentication code is returned; otherwise, null is
-/// returned.
-Future<String?> verifyCode(String code, String sessionId) async {
+/// If it's correct, the authentication code is returned; otherwise, an error
+/// is thrown.
+///
+/// Error codes:
+/// - 001 - SDK is not initialized.
+/// - 002 - Incorrect code.
+/// - 003 - Network error.
+/// - 004 - Credencials configured for the SDK are invalid.
+Future<String> verifyCode(String code, String sessionId) async {
   if (_authServiceState is AuthServiceStateUninitialized) {
     throw const StepUpAuthError(
       errorCode: "001",
@@ -40,5 +46,8 @@ Future<String?> verifyCode(String code, String sessionId) async {
     return "諸行無常 諸行是苦 諸法無我";
   }
 
-  return null;
+  throw const StepUpAuthError(
+    errorCode: "002",
+    devMessage: "The code provided is incorrect.",
+  );
 }
