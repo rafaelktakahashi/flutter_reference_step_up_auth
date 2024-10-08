@@ -64,6 +64,7 @@ class _StepUpPromptState extends State<StepUpPrompt> {
       backgroundColor: Colors.blue[300],
       extra: OverflowBar(children: [
         TextField(
+          key: const Key("step-up-auth-code-input"),
           decoration: const InputDecoration(hintText: "Verification code"),
           onChanged: (value) {
             setState(() {
@@ -72,6 +73,7 @@ class _StepUpPromptState extends State<StepUpPrompt> {
           },
         ),
         ElevatedButton(
+          key: const Key("step-up-auth-confirm-button"),
           style: ButtonStyle(
             foregroundColor: WidgetStateProperty.all(Colors.blue[700]),
           ),
@@ -103,7 +105,7 @@ class _StepUpPromptState extends State<StepUpPrompt> {
                               content: const SingleChildScrollView(
                                 child: ListBody(
                                   children: <Widget>[
-                                    Text('The error code is incorrect.'),
+                                    Text('The verification code is incorrect.'),
                                   ],
                                 ),
                               ),
@@ -132,12 +134,13 @@ class _StepUpPromptState extends State<StepUpPrompt> {
                   });
                 },
           child: Text(
-            key: const Key("step-up-auth-confirm-button"),
+            key: const Key("step-up-auth-confirm-button-text"),
             verifying ? "VERIFYING..." : "CONFIRM",
             style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
         ),
         ElevatedButton(
+          key: const Key("step-up-auth-fail-button"),
           style: ButtonStyle(
             foregroundColor: WidgetStateProperty.all(Colors.red[700]),
           ),
@@ -145,7 +148,7 @@ class _StepUpPromptState extends State<StepUpPrompt> {
             widget.onFailure(StepUpPromptFailureReason.userDismissed);
           },
           child: const Text(
-            key: Key("step-up-auth-fail-button"),
+            key: Key("step-up-auth-fail-button-text"),
             "FAIL AND LEAVE",
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
